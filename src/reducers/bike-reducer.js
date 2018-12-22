@@ -12,7 +12,7 @@ export default function (state = initialState, action) {
         case actionTypes.STOLEN_BIKES_FETCH:
             return {
                 ...state,
-                items: action.payload,
+                items: action.payload.incidents,
             }
        
         default:

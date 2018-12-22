@@ -1,16 +1,18 @@
 
 
-import React, { Component, Fragment } from 'react';
+import React from 'react';
+import { Li } from './style';
+import { BikeImage } from '../BikeImage'
+import { BikeDetail } from '../BikeDetail'
 
 
+export const Bike = ({...bike}) => {
+    return (
+        <Li>
+            <BikeImage url={bike.url} imageUrl={bike.media.image_url} imageAlt={"a"} />
+            <BikeDetail title={bike.title} address={bike.address}  />
 
-class Bike extends Component {
-
-    render() {
-        return (
-            <div>{this.props.title}</div>
-        );
-    }
+        </Li>
+    );
 }
-
 export default Bike;

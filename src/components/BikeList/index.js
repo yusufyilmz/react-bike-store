@@ -2,18 +2,16 @@
 
 import React from 'react';
 import Bike from '../Bike';
-import { ListWrapper } from './style';
-
-
+import { Ul } from './style';
 
 const BikeList = ({ bikes }) => {
 
     return (
-        <ListWrapper>
+        <Ul>
             {bikes.map(bike => {
                 return <Bike {...bike} />
             })}
-        </ListWrapper>
+        </Ul>
     );
 }
 
