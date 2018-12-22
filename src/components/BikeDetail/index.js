@@ -7,35 +7,28 @@
 
 import React from 'react';
 import Bike from '../Bike';
+import {Div, H5, Ul} from './style';
 
-export const BikeDetail = ({ title, address, occured, type, source }) => {
+
+export const BikeDetail = ({ title, description, occured, sourceUrl, address }) => {
 
     return (
-        <div>
-            <h5>
-                <strong>
-                    {title}
-                </strong>
-
-            </h5>
-            <ul>
+        <Div>
+            <a href={sourceUrl}>
+                <H5>
+                    <strong> {title} </strong>
+                </H5>
+            </a>
+            <Ul>
                 <li>
-                    <span>Address</span> {address}
+                    <span>{description}</span> 
                 </li>
+                <br/>
                 <li>
-                    <span>Occured </span> {occured}
+                    <span>{occured} - {address} </span> 
                 </li>
-
-                <li>
-                    <span>Stolen type:</span> {type}
-                </li>
-
-                <li>
-                    <span>Source</span> {source}
-                </li>
-            </ul>
-
-        </div>
+            </Ul>
+        </Div>
     );
 }
 
