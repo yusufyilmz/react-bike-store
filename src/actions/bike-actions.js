@@ -10,25 +10,35 @@ function fetchBikeStoreItems(items) {
     }
 }
 
+function requestBikeStoreItems() {
+    return {
+        type: actionTypes.STOLEN_BIKES_REQUEST,
+    }
+}
+
+function fetchBikeStoreError(error) {
+    return {
+        type: actionTypes.STOLEN_BIKES_ERROR,
+        payload: error
+    }
+}
+
 
 export const getStolenBikes = (bike) => async (dispatch, getState) => {
 
 
     try {
 
+        dispatch(requestBikeStoreItems())
         const response = await BikeWiseAPI.get('/incidents?page=1&per_page=4&proximity_square=100')
-
-        if (response.status === 200) {
-
-            console.log(response.data);
-            dispatch(fetchBikeStoreItems(response.data))
+        if (response.status === 200 && response.data.incidents) {
+            dispatch(fetchBikeStoreItems(response.data.incidents))
         }
         else {
-            console.log("error");
-
+            dispatch(fetchBikeStoreError(response.data.error));
         }
     }
     catch (e) {
-        console.log(e)
+        dispatch(fetchBikeStoreError("An error occured"))
     }
 }

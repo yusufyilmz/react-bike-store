@@ -12,9 +12,21 @@ export default function (state = initialState, action) {
         case actionTypes.STOLEN_BIKES_FETCH:
             return {
                 ...state,
-                items: action.payload.incidents,
+                items: action.payload,
+                loading: false,
+                error: false
             }
-       
+        case actionTypes.STOLEN_BIKES_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+        case actionTypes.STOLEN_BIKES_ERROR:
+            return {
+                ...state,
+                error: true,
+            }
+
         default:
             return state;
     }

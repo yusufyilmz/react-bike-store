@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, H1, Main } from './style';
 import {Header} from '../Header';
-import BikeStore from '../BikeStore';
+import StolenBikes from '../StolenBikes';
 
 class App extends Component {
 
@@ -10,7 +10,7 @@ class App extends Component {
             <Main>
                 <Container>
                     <Header />
-                    <BikeStore/>
+                    <StolenBikes/>
                 </Container>
             </Main>
         );
