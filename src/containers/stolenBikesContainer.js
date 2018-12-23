@@ -7,6 +7,7 @@ class StolenBikesContainer extends Component {
     componentDidMount() {
         this.props.getStolenBikes();
     }
+        
     getStateAndHelpers() {
         return {
             bikes: this.props.bikes,

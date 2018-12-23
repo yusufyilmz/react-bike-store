@@ -12,6 +12,9 @@ import {Div, H5, Ul} from './style';
 
 export const BikeDetail = ({ title, description, occured, sourceUrl, address }) => {
 
+
+    const occuredDate = new Date(occured * 1000).toString();
+
     return (
         <Div>
             <a href={sourceUrl}>
@@ -25,7 +28,7 @@ export const BikeDetail = ({ title, description, occured, sourceUrl, address }) 
                 </li>
                 <br/>
                 <li>
-                    <span>{occured} - {address} </span> 
+                    <span>{occuredDate} - {address} </span> 
                 </li>
             </Ul>
         </Div>

@@ -11,13 +11,13 @@ export const Bike = ({ ...bike }) => {
         <Li>
             <BikeImage
                 url={bike.url}
-                imageUrl={bike.media.image_url}
+                imageUrl={bike.imageUrl}
                 imageAlt={bike.title} />
             <BikeDetail
                 title={bike.title}
-                sourceUrl ={bike.source && bike.source.html_url}
+                sourceUrl ={bike.sourceUrl}
                 address={bike.address}
-                occured={bike.occurred_at}
+                occured={bike.occurred}
                 description={bike.description} />
         </Li>
     );

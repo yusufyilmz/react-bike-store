@@ -1,15 +1,23 @@
 
 
 
-import React from 'react';
+import React, { Fragment } from 'react';
+import { BouncerWrapper, SpinnerWrapper, Div } from './style'
 
-
-export const Loader = () => {
+export const Loader = ({ loading }) => {
     return (
-        <div>
-            <span>
-                Loading..
-            </span>
-        </div>
+        <Fragment>
+            {loading &&
+                <Div>
+                    <SpinnerWrapper>
+                        <span><strong>Loading </strong>  </span>
+                        <BouncerWrapper />
+                        <BouncerWrapper />
+                        <BouncerWrapper />
+                    </SpinnerWrapper>
+                </Div>
+            }
+        </Fragment>
+
     );
 }

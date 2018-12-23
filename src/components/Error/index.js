@@ -1,17 +1,22 @@
 
 
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Span } from './style'
 
 
-export const Error = () => {
+export const Error = ({error}) => {
     return (
-        <div>
-            <Span>
-                Ooops... Something went wrong..
-            </Span>
-        </div>
+        <Fragment>
+            {error && 
+                <div>
+                    <Span>
+                        Ooops... Something went wrong..
+                    </Span>
+                </div>
+            }
+        </Fragment>
+
 
     );
 }
