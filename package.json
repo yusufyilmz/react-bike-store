@@ -3,23 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.1",
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
+    "google-map-react": "^1.1.2",
     "lodash": "^4.17.11",
     "lodash.isempty": "^4.4.0",
     "lodash.uniqueid": "^4.0.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
+    "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.1.2"
   },
   "scripts": {
-
-    "start": "cross-env REACT_APP_UBERALLAPI_URL=https://bikewise.org:443/api/v2 react-scripts start",
+    "start": "cross-env REACT_APP_BIKEWISE_URL=https://bikewise.org:443/api/v2 cross-env REACT_APP_GMAP_URL=https://maps.googleapis.com/maps cross-env REACT_APP_GMAP_KEY=AIzaSyBXcKAqzleAtTAieoVeMjS-YuAajrMN_bs react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Container, H1, Main } from './style';
+import { Container, Main } from './style';
 import {Header} from '../Header';
 import StolenBikes from '../StolenBikes';
 import BikeFilter from '../BikeFilter';
+import StolenBikeDetail from '../StolenBikeDetail';
+
 
 class App extends Component {
 
@@ -13,6 +15,7 @@ class App extends Component {
                     <Header />
                     <BikeFilter/>
                     <StolenBikes/>
+                    <StolenBikeDetail/>
                 </Container>
             </Main>
         );

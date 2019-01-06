@@ -13,7 +13,7 @@ import {Div, H5, Ul} from './style';
 export const BikeDetail = ({ title, description, occured, sourceUrl, address }) => {
 
 
-    const occuredDate = new Date(occured * 1000).toString();
+    const occuredDate = new Date(occured * 1000).toDateString();
 
     return (
         <Div>

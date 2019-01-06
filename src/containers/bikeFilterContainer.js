@@ -4,15 +4,15 @@ import { filterStolenBikes } from '../actions';
 
 class BikeFilterContainer extends Component {
     state = {
-        description: '',
+        title: '',
         dateFrom: '',
         dateTo: '',
     }
 
-    onChangeDescription = (e) => {
-        const description = e.target.value;
+    onChangeTitle = (e) => {
+        const title = e.target.value;
         this.setState((prevState) => ({
-            description
+            title
         }))
     }
 
@@ -38,13 +38,14 @@ class BikeFilterContainer extends Component {
 
     getStateAndHelpers() {
         return {
-            description: this.state.description,
+            title: this.state.title,
             dateFrom: this.state.dateFrom,
             dateTo: this.state.dateTo,
-            changeDescription: this.onChangeDescription,
+            changeTitle: this.onChangeTitle,
             changeDateFrom: this.onChangeDateFrom,
             changeDateTo: this.onChangeDateTo,
-            filterStolenBikes: this.filterStolenBikes
+            filterStolenBikes: this.filterStolenBikes,
+            activeBike: this.props.activeBike
         }
     }
 
@@ -56,4 +57,12 @@ class BikeFilterContainer extends Component {
 }
 
 
-export default connect(null, { filterStolenBikes })(BikeFilterContainer);
+const mapStateToProps = (state) => {
+    return {
+        activeBike: state.bike.activeBike
+
+    }
+}
+
+
+export default connect(mapStateToProps, { filterStolenBikes })(BikeFilterContainer);

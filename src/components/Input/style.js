@@ -9,5 +9,7 @@ export const InputWrapper = styled.input`
     border-radius: 5px;
     height:30px;
     font-size: 15px!important;
+    margin-top: 20px;
+    float: ${props => props.float && props.float}
 `;
 

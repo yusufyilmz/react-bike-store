@@ -6,16 +6,17 @@ import { BikeImage } from '../BikeImage'
 import { BikeDetail } from '../BikeDetail'
 
 
-export const Bike = ({ ...bike }) => {
+export const Bike = ({onClick, ...bike }) => {
     return (
-        <Li>
+        <Li 
+        onClick={() => onClick(bike)}>
             <BikeImage
                 url={bike.url}
                 imageUrl={bike.imageUrl}
                 imageAlt={bike.title} />
             <BikeDetail
                 title={bike.title}
-                sourceUrl ={bike.sourceUrl}
+                sourceUrl={bike.sourceUrl}
                 address={bike.address}
                 occured={bike.occurred}
                 description={bike.description} />

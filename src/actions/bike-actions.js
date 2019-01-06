@@ -1,6 +1,6 @@
 import * as actionTypes from '../constants/actionTypes';
 import BikeWiseAPI from '../api/bikeWiseAPI';
-
+import GoogleMapAPI from '../api/googleMapAPI';
 
 
 const fetchBikeStoreItems = (items) => {
@@ -9,6 +9,16 @@ const fetchBikeStoreItems = (items) => {
         payload: items
     }
 }
+
+
+const fetchBikeAddress = (items) => {
+    return {
+        type: actionTypes.STOLEN_BIKE_ADDRESS,
+        payload: items
+    }
+}
+
+
 
 const requestBikeStoreItems = () => {
     return {
@@ -31,7 +41,24 @@ const stolenBikesFiltered = (bikes) => {
 }
 
 
-function range1(i) { return i ? range1(i - 1).concat(i) : [] }
+export const  selectBike = (bike) => async (dispatch, getState) => {
+    
+    dispatch({
+        type: actionTypes.SHOW_BIKE_DETAIL,
+        payload: bike
+    })
+
+}
+
+
+
+export const  closeBikeDetail = () => async (dispatch, getState) => {
+    
+    dispatch({
+        type: actionTypes.CLOSE_BIKE_DETAIL,
+    })
+
+}
 
 
 export const filterStolenBikes = (filterData) => async (dispatch, getState) => {
@@ -58,7 +85,7 @@ export const filterStolenBikes = (filterData) => async (dispatch, getState) => {
         console.log(2)
 
         filteredBikes = bikes.filter(bike =>
-            bike.description && bike.description.toLowerCase().indexOf(filterData.description.toLowerCase()) !== -1 &&
+            bike.title && bike.title.toLowerCase().indexOf(filterData.title.toLowerCase()) !== -1 &&
             bike.occurred > filterOccuredFrom
         );
     }
@@ -66,7 +93,7 @@ export const filterStolenBikes = (filterData) => async (dispatch, getState) => {
         console.log(3)
 
         filteredBikes = bikes.filter(bike =>
-            bike.description && bike.description.toLowerCase().indexOf(filterData.description.toLowerCase()) !== -1 &&
+            bike.title && bike.title.toLowerCase().indexOf(filterData.title.toLowerCase()) !== -1 &&
             bike.occurred < filterOccuredTo
         );
     }
@@ -82,7 +109,7 @@ export const filterStolenBikes = (filterData) => async (dispatch, getState) => {
         console.log(5)
 
         filteredBikes = bikes.filter(bike =>
-            bike.description && bike.description.toLowerCase().indexOf(filterData.description.toLowerCase()) !== -1
+            bike.title && bike.title.toLowerCase().indexOf(filterData.title.toLowerCase()) !== -1
         );
     }
     else if (filterOccuredFrom) {
@@ -106,14 +133,14 @@ export const filterStolenBikes = (filterData) => async (dispatch, getState) => {
 }
 
 
-export const getStolenBikes = () => async (dispatch, getState) => {
+export const getStolenBikes = (pageNumber) => async (dispatch, getState) => {
 
 
     try {
 
         dispatch(requestBikeStoreItems())
 
-        const response = await BikeWiseAPI.get('/incidents?proximity=berlin&proximity_square=100&page=1&per_page=10')
+        const response = await BikeWiseAPI.get(`/incidents?proximity=berlin&proximity_square=100&page=${pageNumber}&per_page=10`)
 
         if (response.status === 200 && response.data.incidents) {
             dispatch(fetchBikeStoreItems(response.data.incidents))
@@ -130,31 +157,23 @@ export const getStolenBikes = () => async (dispatch, getState) => {
 
 
 
-// export const getStolenBikes = () => async (dispatch, getState) => {
+export const  getGeocodeOfStolenBike = (bike) => async (dispatch, getState) => {
 
-
-//     try {
-//         dispatch(requestBikeStoreItems())
-
-//         var incidents = [];
-
-//         for (const i of range1(10)) {
-
-//             const response = await BikeWiseAPI.get(`/incidents?proximity=berlin&proximity_square=100&page=${i}&per_page=10`)
-//             console.log(response.data)
-//             if (response.status === 200 && response.data.incidents && response.data.incidents.length > 0) {
-//                 incidents.push(response.data.incidents)
-//             }
-//             else {
-//                 break;
-//             }
-//         }
-
-//         dispatch(fetchBikeStoreItems(incidents))
-
-//     }
-//     catch (e) {
-//         dispatch(fetchBikeStoreError("An error occured"))
-//     }
-// }
+    try {
+        const address = bike.address.split(',').map(item => item.trim().split(' ').join('+')).join(',')
+        dispatch(requestBikeStoreItems())
+        const response = await GoogleMapAPI.get(`/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GMAP_KEY}`)
+        console.log(response.data)
+        if (response.status === 200 && response.data.status === 'OK') {
+            dispatch(fetchBikeAddress({ address: response.data.results[0].formatted_address,
+                                        geolocation: response.data.results[0].geometry.location}))
+        }
+        else {
+            dispatch(fetchBikeStoreError(response.data.error));
+        }
+    }
+    catch (e) {
+        dispatch(fetchBikeStoreError("An error occured"))
+    }
+}
 

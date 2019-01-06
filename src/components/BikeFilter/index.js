@@ -9,15 +9,17 @@ import BikeFilterContainer from '../../containers/bikeFilterContainer'
 const UserInput = () => {
     return (
         <BikeFilterContainer>
-            {({description, dateFrom, dateTo, changeDescription, changeDateFrom, changeDateTo, filterStolenBikes }) => (
+            {({ title, dateFrom, dateTo, changeTitle, changeDateFrom, changeDateTo, filterStolenBikes, activeBike }) => (
+
+                !activeBike &&
                 <Form onSubmit={filterStolenBikes}>
                     <Input
                         type="text"
                         name="company"
                         placeHolder="Search Case and descriptions"
                         width={230}
-                        value={description}
-                        onChange={changeDescription}
+                        value={title}
+                        onChange={changeTitle}
                         required={true} />
                     <Input
                         type="date"
