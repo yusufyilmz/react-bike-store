@@ -13,3 +13,4 @@ export const InputWrapper = styled.input`
     float: ${props => props.float && props.float}
 `;
 
+InputWrapper.displayName = 'Input'

@@ -12,7 +12,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
-    "react-scripts": "2.1.1",
+    "react-scripts": "^2.1.3",
     "redux": "^4.0.1",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
@@ -21,16 +21,40 @@
   "scripts": {
     "start": "cross-env REACT_APP_BIKEWISE_URL=https://bikewise.org:443/api/v2 cross-env REACT_APP_GMAP_URL=https://maps.googleapis.com/maps cross-env REACT_APP_GMAP_KEY=AIzaSyBXcKAqzleAtTAieoVeMjS-YuAajrMN_bs react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-styled-components": "^1.10.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
+    "fetch-mock": "^7.3.0",
+    "jest": "^23.6.0",
+    "jest-dom": "^3.0.0",
+    "jest-enzyme": "^7.0.1",
+    "moxios": "^0.4.0",
+    "react-test-renderer": "^16.7.0",
+    "react-testing-library": "^5.4.4",
+    "redux-mock-store": "^1.5.3"
+  }
 }

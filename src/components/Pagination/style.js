@@ -21,6 +21,7 @@ export const A = styled.a`
     transition: background-color .3s;
     border: 1px solid #ddd;
 `
+A.displayName = 'a';
 
 export const ActiveA = styled(A)`
     background-color: #1abc9c;

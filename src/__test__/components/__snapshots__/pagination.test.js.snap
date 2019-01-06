@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination component renders element correctly 1`] = `
+<styled.div>
+  <styled.div>
+    <a
+      key="1"
+    >
+      «
+    </a>
+    <Styled(a)
+      key="2"
+      onClick={[Function]}
+    >
+      1
+    </Styled(a)>
+    <a
+      key="3"
+    >
+      ...
+    </a>
+    <a
+      key="4"
+    >
+      »
+    </a>
+  </styled.div>
+</styled.div>
+`;

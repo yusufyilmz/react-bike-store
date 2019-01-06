@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component renders element correctly 1`] = `
+<div>
+  <label>
+    test
+  </label>
+  <Input
+    autoComplete="off"
+    onChange={[MockFunction]}
+    type="text"
+    value="test"
+  />
+</div>
+`;

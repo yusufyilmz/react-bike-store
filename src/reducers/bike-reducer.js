@@ -28,7 +28,6 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 items: bikes,
-                allItems: bikes,
                 loading: false,
                 error: false
             }

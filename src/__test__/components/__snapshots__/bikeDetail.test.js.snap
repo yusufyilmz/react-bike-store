@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BikeDetail component renders element correctly 1`] = `
+<styled.div>
+  <a
+    href="#"
+  >
+    <styled.h5>
+      <strong>
+         
+        test
+         
+      </strong>
+    </styled.h5>
+  </a>
+  <styled.ul>
+    <li>
+      <span />
+    </li>
+    <br />
+    <li>
+      <span>
+        Invalid Date
+         - 
+         
+      </span>
+    </li>
+  </styled.ul>
+</styled.div>
+`;

@@ -6,5 +6,4 @@ export const Span = styled.div`
     font-weight: bold;
 `
 
-
-
+Span.displayName = 'span';

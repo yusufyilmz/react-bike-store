@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error component renders element correctly 1`] = `
+<Fragment>
+  <div>
+    <span>
+      Ooops... Something went wrong..
+    </span>
+  </div>
+</Fragment>
+`;

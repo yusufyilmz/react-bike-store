@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BikeImage component renders element correctly 1`] = `
+<a>
+  <img
+    src="test.png"
+  />
+</a>
+`;

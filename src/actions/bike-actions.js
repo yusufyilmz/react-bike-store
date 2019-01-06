@@ -38,21 +38,20 @@ const stolenBikesFiltered = (bikes) => {
     }
 }
 
-export const selectBike = (bike) => async (dispatch, getState) => {
+export const selectBike = (bike) => {
 
-    dispatch({
+    return {
         type: actionTypes.SHOW_BIKE_DETAIL,
         payload: bike
-    })
-
+    }
 }
 
 
-export const closeBikeDetail = () => async (dispatch, getState) => {
+export const closeBikeDetail = () => {
 
-    dispatch({
+    return {
         type: actionTypes.CLOSE_BIKE_DETAIL,
-    })
+    }
 
 }
 
