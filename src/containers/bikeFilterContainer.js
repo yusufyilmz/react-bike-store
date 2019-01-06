@@ -50,8 +50,6 @@ class BikeFilterContainer extends Component {
     }
 
     render() {
-        console.log(this.state)
-
         return this.props.children(this.getStateAndHelpers())
     }
 }

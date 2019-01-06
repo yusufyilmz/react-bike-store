@@ -8,10 +8,8 @@ import { BikeDetail } from '../BikeDetail'
 
 export const Bike = ({onClick, ...bike }) => {
     return (
-        <Li 
-        onClick={() => onClick(bike)}>
+        <Li onClick={() => onClick(bike)}>
             <BikeImage
-                url={bike.url}
                 imageUrl={bike.imageUrl}
                 imageAlt={bike.title} />
             <BikeDetail

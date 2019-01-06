@@ -5,7 +5,6 @@ import StolenBikesContainer from '../../containers/stolenBikesContainer';
 import BikeList from '../BikeList';
 import { Error } from '../Error';
 import { Loader } from '../Loader';
-// import { StolenBikeDetail } from '../StolenBikeDetail';
 import Pagination from '../Pagination';
 
 class StolenBikes extends Component {
@@ -13,17 +12,17 @@ class StolenBikes extends Component {
     render() {
         return (
             <StolenBikesContainer>
-                {({ bikes, error, loading, selectBike, activeBike, closeBikeDetail, onChangePage, selectedPage, pageCount, onNextPage, onPreviousPage, selectPage }) => (
+                {({ bikes, error, loading, selectBike, activeBike, selectedPage, pageCount, onNextPage, onPreviousPage, selectPage }) => (
+                    !activeBike &&
                     <Fragment>
                         <Error error={error} />
                         <Loader loading={loading} />
-                        {!error && !loading && !activeBike &&
+                        {!error && !loading &&
                             <Fragment>
                                 <BikeList
                                     bikes={bikes}
                                     onselectBike={selectBike} />
                                 <Pagination
-                                    onChangePage={onChangePage}
                                     selectedPage={selectedPage}
                                     pageCount={pageCount} onNextPage={onNextPage}
                                     onPreviousPage={onPreviousPage}

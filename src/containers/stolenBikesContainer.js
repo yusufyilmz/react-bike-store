@@ -4,28 +4,27 @@ import { getStolenBikes, selectBike, closeBikeDetail } from '../actions';
 
 class StolenBikesContainer extends Component {
 
-    state = {
-        selectedPage:  1,
+    initialState = {
+        selectedPage: 1,
         pageCount: 1
     }
+
+    state = this.initialState
+
     componentDidMount() {
-        this.props.getStolenBikes(this.state.selectedPage);
+        this.props.getStolenBikes({ pageNumber: this.state.selectedPage, filter: false });
     }
 
     selectBike = (bike) => {
         this.props.selectBike(bike);
     }
 
-    closeBikeDetail = () => {
-        this.props.closeBikeDetail();
-    }
-
     onNextPage = () => {
         this.setState((prevState) => ({
             selectedPage: prevState.selectedPage + 1,
-            pageCount:  prevState.pageCount + 1 ,
+            pageCount: prevState.pageCount + 1,
         }), () => {
-            this.props.getStolenBikes(this.state.selectedPage)
+            this.props.getStolenBikes({ ...this.props.filterData, pageNumber: this.state.selectedPage, filter: false })
         })
     }
 
@@ -34,7 +33,7 @@ class StolenBikesContainer extends Component {
             this.setState((prevState) => ({
                 selectedPage: prevState.selectedPage - 1
             }), () => {
-                this.props.getStolenBikes(this.state.selectedPage)
+                this.props.getStolenBikes({ ...this.props.filterData, pageNumber: this.state.selectedPage, filter: false })
             })
         }
     }
@@ -43,7 +42,7 @@ class StolenBikesContainer extends Component {
         this.setState((prevState) => ({
             selectedPage: i
         }), () => {
-            this.props.getStolenBikes(this.state.selectedPage)
+            this.props.getStolenBikes({ ...this.props.filterData, pageNumber: this.state.selectedPage, filter: false })
         })
 
     }
@@ -56,13 +55,17 @@ class StolenBikesContainer extends Component {
             loading: this.props.loading,
             selectBike: this.selectBike,
             activeBike: this.props.activeBike,
-            closeBikeDetail: this.closeBikeDetail,
-            onChangePage: this.onChangePage,
             selectedPage: this.state.selectedPage,
             pageCount: this.state.pageCount,
             onPreviousPage: this.onPreviousPage,
             onNextPage: this.onNextPage,
             selectPage: this.selectPage
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.filterData !== prevProps.filterData && this.props.filterData.filter === true) {
+            this.setState(this.initialState)
         }
     }
 
@@ -77,7 +80,9 @@ const mapStateToProps = (state) => {
         bikes: state.bike.items,
         error: state.bike.error,
         loading: state.bike.loading,
-        activeBike: state.bike.activeBike
+        activeBike: state.bike.activeBike,
+        filterData: state.bike.filterData,
+        filtered: state.bike.filtered
 
     }
 }

@@ -4,9 +4,6 @@ import { getGeocodeOfStolenBike, closeBikeDetail } from '../actions';
 
 class StolenBikeDetailContainer extends Component {
 
-    componentDidMount() {
-        // this.props.getStolenBikes(this.state.selectedPage);
-    }
 
     closeBikeDetail = () => {
         this.props.closeBikeDetail();
@@ -14,7 +11,6 @@ class StolenBikeDetailContainer extends Component {
 
 
     componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
         if (this.props.activeBike !== prevProps.activeBike && this.props.activeBike) {
             this.props.getGeocodeOfStolenBike(this.props.activeBike);
         }
@@ -25,7 +21,8 @@ class StolenBikeDetailContainer extends Component {
         return {
             activeBike: this.props.activeBike,
             closeBikeDetail: this.closeBikeDetail,
-            address: this.props.address
+            address: this.props.address,
+            error: this.props.error,
         }
     }
 
@@ -38,7 +35,6 @@ class StolenBikeDetailContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         error: state.bike.error,
-        loading: state.bike.loading,
         activeBike: state.bike.activeBike,
         address: state.bike.address
 
